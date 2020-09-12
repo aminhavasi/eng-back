@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const Words = require('./../models/words');
 
-router.get('/', async (req, res) => {
-    console.log('res');
-});
+router.post('/newWord', async (req, res) => {});
 
 module.exports = router;

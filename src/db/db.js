@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const db = () => {
     mongoose.connect(
-        'mongodb://amin:abc1234@localhost:2017/eng',
+        process.env.URI,
         {
             useCreateIndex: true,
             useFindAndModify: false,
