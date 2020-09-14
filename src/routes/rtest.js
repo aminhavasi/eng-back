@@ -22,18 +22,22 @@ router.post('/newWord', async (req, res) => {
     }
 });
 
-router.post('/rtest/:id', async (req, res) => {
+router.post('/rtest', async (req, res) => {
     try {
-        await Words.findOneAndUpdate(
-            { _id: req.params.id },
-            { score: req.body.score },
-            { new: true },
-            (err, doc) => {
-                if (!err) {
-                    res.status(200).send();
+        const body = req.body;
+        await body.map((m) => {
+            Words.findOneAndUpdate(
+                { _id: m._id },
+                { score: m.score },
+                { new: true },
+                (err, doc) => {
+                    if (!err) {
+                        res.status(200).send();
+                    }
                 }
-            }
-        );
+            );
+        });
+        res.send('ok');
     } catch (err) {
         res.status(400).send(err);
     }
@@ -46,6 +50,11 @@ router.get('/', async (req, res) => {
     } catch (err) {
         res.status(400).send(err);
     }
+});
+
+router.post('/test', (req, res) => {
+    console.log(req.body);
+    res.send('ok');
 });
 
 module.exports = router;
