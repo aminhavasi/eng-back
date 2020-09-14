@@ -4,6 +4,7 @@ const wordsSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 1,
+        unique: true,
     },
     means: {
         type: String,
@@ -14,6 +15,10 @@ const wordsSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 1,
+    },
+    score: {
+        type: Number,
+        default: 0,
     },
 });
 
